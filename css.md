@@ -3,6 +3,16 @@
 - CSS variables must be used for colors
 - CSS must be structured using nested CSS
   ```css
+  a,
+  button.link {
+    text-decoration: none;
+    color: var(--interactive-color);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
   button {
     --color-1: var(--interactive-color);
     --color-2: var(--background-color);
@@ -33,6 +43,12 @@
     &.warn {
       --color-1: var(--warn-color);
     }
-}
-````
+
+    &.link {
+      padding: 0;
+      margin: 0;
+      background: none:
+    }
+  }
+  ````
 
