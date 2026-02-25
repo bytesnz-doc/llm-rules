@@ -1,6 +1,9 @@
 # CSS Rules
 
-- CSS variables must be used for colors
+- CSS variables must be used for
+  - colors
+  - common standard units, e.g. `--box-padding: 0.5em 0.8em;`
+- Classes should be used common flexbox styling, e.g. `.flex`, `.gap`, `.wrap`
 - CSS must be structured using nested CSS
   ```css
   a,
