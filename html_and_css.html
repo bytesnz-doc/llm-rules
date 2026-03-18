@@ -1,0 +1,284 @@
+<main>
+  <h1>Test HTML</h1>
+
+  <p>hello <a href="">link</a> again</p>
+  <p class="primary">hello <a href="">link</a> again</p>
+  <p class="error">hello <a href="">link</a> again</p>
+  <p class="warning">hello <a href="">link</a> again</p>
+  <p class="success">hello <a href="">link</a> again</p>
+
+  <div class="notice">This is a notice</div>
+  <div class="notice primary">This is a notice</div>
+  <div class="notice error">This is a notice</div>
+  <div class="notice warning">This is a notice</div>
+  <div class="notice success">This is a notice</div>
+
+  <div class="flex gap wrap">
+    <div class="flex gap">
+      <button type="button">Button</button>
+      <button type="button" class="primary">Button</button>
+      <button type="button" class="error">Button</button>
+      <button type="button" class="warning">Button</button>
+      <button type="button" class="success">Button</button>
+    </div>
+    <div class="flex gap">
+      <button type="button" class="outline">Button</button>
+      <button type="button" class="outline primary">Button</button>
+      <button type="button" class="outline error">Button</button>
+      <button type="button" class="outline warning">Button</button>
+      <button type="button" class="outline success">Button</button>
+    </div>
+  </div>
+
+  <ul class="button-list">
+    <li><a href="#">Test</a></li>
+    <li><a href="#" class="primary">Test</a></li>
+    <li><a href="#" class="error">Test</a></li>
+    <li><a href="#" class="warning">Test</a></li>
+    <li><a href="#" class="sucess">Test</a></li>
+  </ul>
+
+  <form>
+    <label>
+      <span>Test</span>
+      <input>
+    </label>
+    <label>
+      <span>Test</span>
+      <textarea></textarea>
+    </label>
+  </form>
+</main>
+
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* Spacing */
+  --box-padding: 0.5rem 1rem;
+  --box-spacing: 1rem;
+
+  /* Border */
+  --border-radius: 4px;
+  --border: 1px solid var(--color-border);
+
+  /* Colors */
+  --color-background: light-dark(hsl(0, 0%, 96%), hsl(0, 0%, 13%));
+  --color-background-hover: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 0%));
+  --color-card: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 18%));
+  --color-text: light-dark(hsl(0, 0%, 20%), hsl(0, 0%, 88%));
+  --color-text-muted: light-dark(hsl(0, 0%, 40%), hsl(0, 0%, 67%));
+  --color-border: light-dark(hsl(0, 0%, 86%), hsl(0, 0%, 27%));
+
+  /* Status colors */
+  --color-primary-color: light-dark(hsl(204, 70%, 53%), hsl(204, 70%, 41%));
+  --color-primary-text: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 100%));
+  --color-primary-light: light-dark(
+    hsla(204, 70%, 53%, 0.1),
+    hsla(204, 70%, 41%, 0.1)
+  );
+
+  --color-success-color: light-dark(hsl(145, 37%, 40%), hsl(145, 69%, 24%));
+  --color-success-text: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 100%));
+  --color-success-light: light-dark(
+    hsla(145, 37%, 40%, 0.1),
+    hsla(145, 69%, 24%, 0.1)
+  );
+
+  --color-warning-color: light-dark(hsl(38, 89%, 50%), hsl(38, 73%, 32%));
+  --color-warning-text: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 100%));
+  --color-warning-light: light-dark(
+    hsla(38, 89%, 50%, 0.1),
+    hsla(38, 73%, 32%, 0.1)
+  );
+
+  --color-error-color: light-dark(hsl(6, 82%, 59%), hsl(6, 70%, 37%));
+  --color-error-text: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 100%));
+  --color-error-light: light-dark(
+    hsla(6, 82%, 59%, 0.1),
+    hsla(6, 70%, 37%, 0.1)
+  );
+
+  /* Color variants - defaults */
+  --color--color: light-dark(hsl(0, 0%, 13%), hsl(0, 0%, 87%));
+  --color--text: light-dark(hsl(0, 0%, 87%), hsl(0, 0%, 13%));
+  --color--light: light-dark(hsl(0, 0%, 40%, 0.1), hsla(0, 0%, 67%, 0.2));
+}
+
+/* Color variant classes */
+.primary {
+  --color--color: var(--color-primary-color);
+  --color--text: var(--color-primary-text);
+  --color--light: var(--color-primary-light);
+}
+
+.error {
+  --color--color: var(--color-error-color);
+  --color--text: var(--color-error-text);
+  --color--light: var(--color-error-light);
+}
+
+.warning {
+  --color--color: var(--color-warning-color);
+  --color--text: var(--color-warning-text);
+  --color--light: var(--color-warning-light);
+}
+
+.success {
+  --color--color: var(--color-success-color);
+  --color--text: var(--color-success-text);
+  --color--light: var(--color-success-light);
+}
+
+/* Base elements */
+* {
+  box-sizing: border-box;
+  color: var(--color--color);
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: var(--color-background);
+  color: var(--color--color);
+}
+
+main > *{
+  max-width: 100rch;
+  margin: 0 auto;
+  padding: var(--box-padding);
+}
+
+input,
+textarea {
+  font-family: inherit;
+  width: 100%;
+  padding: 0.5rem;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  background: var(--color-card);
+  color: var(--color-text);
+}
+
+a,
+button.link {
+  text-decoration: none;
+  color: var(--color-primary-color);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.button-list li > a,
+a.button,
+button {
+  cursor: pointer;
+  border: var(--border);
+  border-color: var(--color--color);
+  background: var(--color--color);
+  border-radius: var(--border-radius);
+  color: var(--color--text);
+  padding: var(--box-padding);
+
+  &:hover {
+    background: var(--color--light);
+    color: var(--color--color);
+    text-decoration: none;
+  }
+
+  &.outline {
+    background: var(--color--light);
+    color: var(--color--color);
+
+    &:hover {
+      background: var(--color--color);
+      color: var(--color--text);
+    }
+  }
+
+  &.link {
+    padding: 0;
+    margin: 0;
+    background: none;
+  }
+}
+
+.button-list li > a {
+  background: var(--color--light);
+  color: var(--color--color);
+
+  &:hover {
+    background: var(--color--color);
+    color: var(--color--text);
+  }
+}
+
+
+/* Form labels */
+label {
+  display: block;
+  margin-bottom: 1rem;
+
+  span {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.15rem;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+  }
+}
+
+/* Common classes */
+.center {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+
+  &.middle {
+    align-items: center;
+  }
+
+  &.wrap {
+    flex-wrap: wrap;
+  }
+}
+
+.gap {
+  gap: 0.5rem 1rem;
+}
+
+.grow {
+  flex: 1;
+}
+
+.notice {
+  padding: var(--box-padding);
+  border-radius: var(--border-radius);
+  margin-top: var(--box-spacing);
+  margin-bottom: var(--box-spacing);
+  border: var(--border);
+  border-color: var(--color-color);
+  background: var(--color--light);
+  color: var(--color--color);
+}
+
+.button-list {
+  margin: 0 auto;
+  list-style: none;
+
+  li a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: var(--box-spacing);
+    margin-bottom: var(--box-spacing);
+  }
+}
+</style>
