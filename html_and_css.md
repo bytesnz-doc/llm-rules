@@ -11,19 +11,19 @@
 - Color varients must use the global color varient classes and MUST not be
   included in component styling
 
-### Global Stylesheet (Required)
-
-- Must include CSS colors and common properties such as spacing, padding and
-  borders as CSS variables
-- Must have a global set of color variables that are overridden by the color
-  varient classes that can be used on any element of component
-
 ### Required Status Color Structure
 Each status color/color varient MUST define three variables:
 - `--color-x-color`: The main color (used for borders, text)
 - `--color-x-text`: Text color with sufficient contrast for use on --color-x-color
 - `--color-x-light`: Light transparent variant (hsla with ~0.1 alpha) for backgrounds
 The specific hue/saturation/lightness values can be customized to fit the app's design.
+
+### Global Stylesheet (Required)
+
+- Must include CSS colors and common properties such as spacing, padding and
+  borders as CSS variables
+- Must have a global set of color variables that are overridden by the color
+  varient classes that can be used on any element of component
 
 ```css
 :root {
@@ -75,31 +75,35 @@ The specific hue/saturation/lightness values can be customized to fit the app's 
   );
 
   /* Color variants - defaults */
-  --color--color: light-dark(hsl(0, 0%, 13%), hsl(0, 0%, 87%));
-  --color--text: light-dark(hsl(0, 0%, 87%), hsl(0, 0%, 13%));
-  --color--light: light-dark(hsl(0, 0%, 40%, 0.1), hsla(0, 0%, 67%, 0.1));
+  --color-default-color: light-dark(hsl(0, 0%, 13%), hsl(0, 0%, 87%));
+  --color-default-text: light-dark(hsl(0, 0%, 87%), hsl(0, 0%, 13%));
+  --color-default-light: light-dark(hsl(0, 0%, 40%, 0.1), hsla(0, 0%, 67%, 0.1));
+
+  --color--light: var(--color-default-light);
+  --color--text: var(--color-default-text);
+  --color--color: var(--color-default-color);
 }
 
-/* Color variant classes */
-.primary {
+/* Color variant classes (doubled to increase specificity */
+.primary.primary {
   --color--color: var(--color-primary-color);
   --color--text: var(--color-primary-text);
   --color--light: var(--color-primary-light);
 }
 
-.error {
+.error.error {
   --color--color: var(--color-error-color);
   --color--text: var(--color-error-text);
   --color--light: var(--color-error-light);
 }
 
-.warning {
+.warning.warning {
   --color--color: var(--color-warning-color);
   --color--text: var(--color-warning-text);
   --color--light: var(--color-warning-light);
 }
 
-.success {
+.success.success {
   --color--color: var(--color-success-color);
   --color--text: var(--color-success-text);
   --color--light: var(--color-success-light);
@@ -128,7 +132,7 @@ input,
 textarea {
   font-family: inherit;
   width: 100%;
-  padding: 0.5rem;
+  padding: var(--box-padding);
   border: var(--border);
   border-radius: var(--border-radius);
   font-size: 1rem;
@@ -146,14 +150,15 @@ button.link {
   }
 }
 
+.button-list details,
 .button-list li > a,
 a.button,
 button {
   cursor: pointer;
   border: var(--border);
   border-color: var(--color--color);
-  background: var(--color--color);
   border-radius: var(--border-radius);
+  background: var(--color--color);
   color: var(--color--text);
   padding: var(--box-padding);
 
@@ -180,15 +185,55 @@ button {
   }
 }
 
-.button-list li > a {
-  background: var(--color--light);
-  color: var(--color--color);
+.button-list {
+  margin: 0 auto;
+  list-style: none;
 
-  &:hover {
-    background: var(--color--color);
-    color: var(--color--text);
+  li {
+    margin-top: var(--box-spacing);
+    margin-bottom: var(--box-spacing);
+
+    & > a {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--color--light);
+      color: var(--color--color);
+
+      &:hover {
+        background: var(--color--color);
+        color: var(--color--text);
+      }
+    }
+  }
+
+  details {
+    background: var(--color--light);
+    color: var(--color--color);
+    padding: 0;
+
+    & > *:not(summary) {
+      --color--light: var(--color-default-light);
+      --color--text: var(--color-default-text);
+      --color--color: var(--color-default-color);
+      color: var(--color--color);
+    }
+
+    & > * {
+      padding: var(--box-padding);
+    }
+
+    summary {
+      padding: var(--box-padding);
+
+      &:hover {
+        background: var(--color--color);
+        color: var(--color--text);
+      }
+    }
   }
 }
+
 
 
 /* Form labels */
@@ -226,7 +271,7 @@ label {
 }
 
 .gap {
-  gap: 0.5rem 1rem;
+  gap: var(--box-spacing);
 }
 
 .grow {
@@ -239,22 +284,9 @@ label {
   margin-top: var(--box-spacing);
   margin-bottom: var(--box-spacing);
   border: var(--border);
-  border-color: var(--color--color);
+  border-color: var(--color-color);
   background: var(--color--light);
   color: var(--color--color);
-}
-
-.button-list {
-  margin: 0 auto;
-  list-style: none;
-
-  li a {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: var(--box-spacing);
-    margin-bottom: var(--box-spacing);
-  }
 }
 ```
 
