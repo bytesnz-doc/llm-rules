@@ -1,3 +1,7 @@
+---
+name: html-and-css
+description: HTML and CSS coding rules and conventions. Use when writing or reviewing any HTML markup or CSS styling, including Svelte component templates and style blocks.
+---
 # HTML and CSS Rules
 
 ## CSS General Rules
